@@ -1,9 +1,9 @@
 %define svn	73976
 
-Summary:	Open Source Sony PlayStation emulator
 Name:		pcsxr
 Version:	1.9.93
 Release:	%mkrel 0.%{svn}
+Summary:	Open Source Sony PlayStation emulator
 URL:		http://www.codeplex.com/pcsxr
 License:	GPLv2
 Group:		Emulators
@@ -68,9 +68,9 @@ export CFLAGS="%{optflags} -fno-strict-aliasing -pthread -w"
 %doc AUTHORS ChangeLog INSTALL NEWS README doc/*.txt
 %{_bindir}/pcsxr
 %{_libdir}/games/psemu
-%{_desktopdir}/*.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/pcsxr
 %{_datadir}/psemu
-%{_datadir}/pixmaps/*
-%{_mandir}/man1/*
+%{_datadir}/pixmaps/*.png
+%{_mandir}/man1/%{name}.1.*
 
