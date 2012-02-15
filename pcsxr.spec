@@ -18,7 +18,7 @@ BuildRequires:	SDL-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	gettext
 BuildRequires:	bzip2-devel
-BuildRequires:	libglade2-devel
+BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	mesagl-devel
 BuildRequires:	libxv-devel
 BuildRequires:	libxext-devel
