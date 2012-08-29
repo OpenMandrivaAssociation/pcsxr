@@ -1,4 +1,4 @@
-%define svn	73976
+%define svn	78971
 
 Name:		pcsxr
 Version:	1.9.93
