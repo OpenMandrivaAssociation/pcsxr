@@ -1,0 +1,193 @@
+Index: pcsxr-1.9.92/plugins/peopsxgl/texture.c
+===================================================================
+--- pcsxr-1.9.92.orig/plugins/peopsxgl/texture.c
++++ pcsxr-1.9.92/plugins/peopsxgl/texture.c
+@@ -994,7 +994,10 @@ void LoadStretchPackedWndTexturePage(int
+         if(ldy) 
+          {ldy--;
+           for(TXU=g_x1;TXU<=g_x2;TXU++)
+-           *ta++=*(ta-(g_x2-g_x1));
++           {
++           *ta=*(ta-(g_x2-g_x1));
++           ta++;
++           }
+          }
+        }
+ 
+@@ -1071,7 +1074,10 @@ void LoadStretchPackedWndTexturePage(int
+         if(ldy) 
+          {ldy--;
+           for(TXU=g_x1;TXU<=g_x2;TXU++)
+-           *ta++=*(ta-(g_x2-g_x1));
++           {
++           *ta=*(ta-(g_x2-g_x1));
++           ta++;
++           }
+          }
+ 
+        }
+@@ -1196,7 +1202,10 @@ void LoadStretchWndTexturePage(int pagei
+         if(ldy) 
+          {ldy--;
+           for(TXU=g_x1;TXU<=g_x2;TXU++)
+-           *ta++=*(ta-(g_x2-g_x1));
++           {
++           *ta=*(ta-(g_x2-g_x1));
++           ta++;
++           }
+          }
+        }
+ 
+@@ -1280,7 +1289,10 @@ void LoadStretchWndTexturePage(int pagei
+         if(ldy) 
+          {ldy--;
+           for(TXU=g_x1;TXU<=g_x2;TXU++)
+-           *ta++=*(ta-(g_x2-g_x1));
++           {
++           *ta=*(ta-(g_x2-g_x1));
++           ta++;
++           }
+          }
+ 
+        }
+@@ -2239,14 +2251,19 @@ GLuint LoadTextureMovie(void)
+            lu=*((uint32_t *)pD);pD+=3;
+            *ta++=XMBLUE(lu)|XMGREEN(lu)|XMRED(lu)|1;
+          }
+-         *ta++=*(ta-1);
++         *ta=*(ta-1);
++         ta++;
+         }
+        if(b_Y)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0+1;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
+-         *ta++=*(ta-1);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
++         *ta=*(ta-1);
++         ta++;
+         }
+       }
+      else
+@@ -2265,7 +2282,10 @@ GLuint LoadTextureMovie(void)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
+         }
+       }
+     }
+@@ -2288,14 +2308,19 @@ GLuint LoadTextureMovie(void)
+            *ta++=((c&0x1f)<<11)|((c&0x3e0)<<1)|((c&0x7c00)>>9)|1;
+           }
+ 
+-         *ta++=*(ta-1);
++         *ta=*(ta-1);
++         ta++;
+         }
+        if(b_Y)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0+1;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
+-         *ta++=*(ta-1);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
++         *ta=*(ta-1);
++         ta++;
+         }
+       }
+      else
+@@ -2313,7 +2338,10 @@ GLuint LoadTextureMovie(void)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
+         }
+       }
+     }
+@@ -2339,14 +2367,19 @@ GLuint LoadTextureMovie(void)
+            *ta++=*((uint32_t *)pD)|0xff000000;
+            pD+=3;
+           }
+-         *ta++=*(ta-1);
++         *ta=*(ta-1);
++         ta++;
+         }
+        if(b_Y)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0+1;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
+-         *ta++=*(ta-1);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
++         *ta=*(ta-1);
++         ta++;
+         }
+       }
+      else
+@@ -2365,7 +2398,10 @@ GLuint LoadTextureMovie(void)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
+         }
+       }
+     }
+@@ -2386,15 +2422,20 @@ GLuint LoadTextureMovie(void)
+          startxy=((1024)*column)+xrMovieArea.x0;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+           *ta++=LTCOL(psxVuw[startxy++]|0x8000);
+-         *ta++=*(ta-1);
++         *ta=*(ta-1);
++         ta++;
+         }
+ 
+        if(b_Y)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0+1;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
+-         *ta++=*(ta-1);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
++         *ta=*(ta-1);
++         ta++;
+         }
+       }
+      else
+@@ -2410,7 +2451,10 @@ GLuint LoadTextureMovie(void)
+         {
+          dx=xrMovieArea.x1-xrMovieArea.x0;
+          for(row=xrMovieArea.x0;row<xrMovieArea.x1;row++)
+-          *ta++=*(ta-dx);
++          {
++          *ta=*(ta-dx);
++          ta++;
++          }
+         }
+       }
+     }
