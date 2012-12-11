@@ -74,3 +74,15 @@ export CFLAGS="%{optflags} -fno-strict-aliasing -pthread -w"
 %{_datadir}/pixmaps/*.png
 %{_mandir}/man1/%{name}.1.*
 
+
+
+%changelog
+* Wed Aug 29 2012 Zombie Ryushu <ryushu@mandriva.org> 1.9.93-0.78971mdv2012.0
++ Revision: 816019
+- Upgrade to SVN 78971
+
+* Wed Feb 15 2012 Andrey Bondrov <abondrov@mandriva.org> 1.9.93-0.73976
++ Revision: 774401
+- Update BuildRequires
+- imported package pcsxr
+
