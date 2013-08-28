@@ -1,29 +1,30 @@
-%define svn	78971
-
+Summary:	Open Source Sony PlayStation emulator
 Name:		pcsxr
 Version:	1.9.93
-Release:	%mkrel 0.%{svn}
-Summary:	Open Source Sony PlayStation emulator
-URL:		http://www.codeplex.com/pcsxr
-License:	GPLv2
+Release:	1
+License:	GPLv2+
 Group:		Emulators
-Source:		%{name}-%{svn}.zip
+Url:		http://www.codeplex.com/pcsxr
+Source:		%{name}-%{version}.tar.bz2
 Patch0:		pcsxr-fix-undefined-operations.patch
 Provides:	pcsx = %{version}
-Obsoletes:	pcsx-df <= 1.10
+Obsoletes:	pcsx-df < 1.10-100
 
-BuildRequires:	nasm
-BuildRequires:	intltool
-BuildRequires:	SDL-devel
-BuildRequires:	gtk+2-devel
-BuildRequires:	gettext
-BuildRequires:	bzip2-devel
-BuildRequires:	pkgconfig(libglade-2.0)
-BuildRequires:	mesagl-devel
-BuildRequires:	libxv-devel
-BuildRequires:	libxext-devel
-BuildRequires:	libxtst-devel
 BuildRequires:	dos2unix
+BuildRequires:	gettext
+BuildRequires:	intltool
+BuildRequires:	nasm
+BuildRequires:	bzip2-devel
+BuildRequires:	pkgconfig(cairo)
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(libglade-2.0)
+BuildRequires:	pkgconfig(pango)
+BuildRequires:	pkgconfig(sdl)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xtst)
+BuildRequires:	pkgconfig(xv)
 
 %description
 Most advanced fork of PCSX.
@@ -40,12 +41,12 @@ package.
 BIOS images can be placed in ~/.pcsx/bios or %{_datadir}/psemu/bios.
 
 %prep
-%setup -q -n pcsxr
+%setup -q -n %{name}
 dos2unix plugins/peopsxgl/*.c
 %patch0 -p1
 
 %build
-%__sed -i s,Game\;,Game\;Emulator\;,g data/pcsxr.desktop
+sed -i s,Game\;,Game\;Emulator\;,g data/pcsxr.desktop
 
 sh ./autogen.sh
 
@@ -54,17 +55,11 @@ export CFLAGS="%{optflags} -fno-strict-aliasing -pthread -w"
 %make
 
 %install
-%__rm -rf %{buildroot}
-
 %makeinstall_std
 
 %find_lang %{name}
 
-%clean
-%__rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr (-,root,root)
 %doc AUTHORS ChangeLog INSTALL NEWS README doc/*.txt
 %{_bindir}/pcsxr
 %{_libdir}/games/psemu
@@ -73,16 +68,4 @@ export CFLAGS="%{optflags} -fno-strict-aliasing -pthread -w"
 %{_datadir}/psemu
 %{_datadir}/pixmaps/*.png
 %{_mandir}/man1/%{name}.1.*
-
-
-
-%changelog
-* Wed Aug 29 2012 Zombie Ryushu <ryushu@mandriva.org> 1.9.93-0.78971mdv2012.0
-+ Revision: 816019
-- Upgrade to SVN 78971
-
-* Wed Feb 15 2012 Andrey Bondrov <abondrov@mandriva.org> 1.9.93-0.73976
-+ Revision: 774401
-- Update BuildRequires
-- imported package pcsxr
 
