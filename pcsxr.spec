@@ -1,7 +1,7 @@
 Summary:	Open Source Sony PlayStation emulator
 Name:		pcsxr
 Version:	1.9.93
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Emulators
 Url:		http://www.codeplex.com/pcsxr
