@@ -4,7 +4,7 @@ Version:	1.9.93
 Release:	2
 License:	GPLv2+
 Group:		Emulators
-Url:		http://www.codeplex.com/pcsxr
+Url:		https://www.codeplex.com/pcsxr
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		pcsxr-fix-undefined-operations.patch
 Provides:	pcsx = %{version}
