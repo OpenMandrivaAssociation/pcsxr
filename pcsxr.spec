@@ -10,6 +10,11 @@ Patch0:		pcsxr-fix-undefined-operations.patch
 Provides:	pcsx = %{version}
 Obsoletes:	pcsx-df < 1.10-100
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	dos2unix
 BuildRequires:	gettext
 BuildRequires:	intltool
